@@ -26,7 +26,11 @@ exp = Le::Comparateur.new
 a = "<html><body></body></html>"
 b = "<html><body><h1></h1></body></html>"
 
-p exp.calculate_similarity(a, b) * 100
+c = Nokogiri::HTML("<html><body></body></html>")
+d = a
+
+p exp.calculate_similarity(a, b) * 100 # in %
+p exp.calculate_similarity(c, d)
 ```
 
 ## Contributing
