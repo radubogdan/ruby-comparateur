@@ -1,6 +1,17 @@
 # Comparateur
 
-Calculate the structural similarity between two HTML documents
+[![Gem Version](https://badge.fury.io/rb/comparateur.svg)](http://badge.fury.io/rb/comparateur) [![comparateur Downloads](http://www.gemetric.me/images/comparateur.gif)](https://rubygems.org/gems/comparateur)
+
+Calculate the structural similarity between two HTML documents.
+
+**How it works**
+It serializes strings, Nokogiri::HTML objects and URLs to arrays containing node's tag names and finds the longest common sequence between two serialized arrays.
+
+The similarity is measured with the formula:
+`2 * length(LCS Array) / (length(TreeA) + length(treeB))`
+
+**How is done**
+Classes are about objects and Modules are about functions. That's why you have to create a class and `include` or `extend` it with `Comparateur` and use it as you like. This implementation also let you built your own cache system.
 
 ## Installation
 
@@ -21,17 +32,47 @@ Or install it yourself as:
 ```ruby
 require 'comparateur'
 
-exp = Le::Comparateur.new
+class LeComparateur
+  extend Comparateur
+end
 
-a = "<html><body></body></html>"
-b = "<html><body><h1></h1></body></html>"
+google_url = "http://google.com"
+duckduck_url = "https://duckduckgo.com"
 
-c = Nokogiri::HTML("<html><body></body></html>")
-d = a
-
-p exp.calculate_similarity(a, b) * 100 # in %
-p exp.calculate_similarity(c, d)
+LeComparateur.compare_urls(google_url, duckduck_url) # 0.3815789473684211
 ```
+
+Example of usage [here](https://raw.githubusercontent.com/radubogdan/ruby-comparateur/master/examples/a.rb)
+
+## Methods
+
+`serialize_nokogiri_html(obj1)`
+- `obj1`: Nokogiri::HTML object.
+- `return`: Array containing node's tag names.
+
+`serialize_url(url)`
+- `url`: URL of the website.
+- `return`: Array containing node's tag names.
+
+`serialize_content(str)`
+- `str`: String containing the html.
+- `return`: Array containing node's tag names.
+
+`compare_nokogiri_html(nok1, nok2)`
+- `nok1, nok2`: Nokogiri::HTML objects.
+- `return`: Score (0-1).
+
+`compare_urls(url1, url2)`
+- `url1, url2`: URL of two different websites.
+- `return`: Score (0-1).
+
+`compare_content(str1, str2)`
+- `str1, str2`: First and second string which contain the html.
+- `return`: Score (0-1).
+
+`lcs(arr1, arr2)`
+- `arr1, arr2`: First and second array which contain the node's tag names.
+- `return`: Score (0-1)
 
 ## Contributing
 
