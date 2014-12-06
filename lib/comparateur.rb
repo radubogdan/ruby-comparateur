@@ -1,20 +1,43 @@
 require "comparateur/version"
 require "nokogiri"
 require "diff-lcs"
+require "open-uri"
 
-module Le
-  class Comparateur
+module Comparateur
 
-    def calculate_similarity site1, site2
-      site1 = Nokogiri::HTML(site1) unless site1.is_a?(Nokogiri::HTML::Document)
-      site2 = Nokogiri::HTML(site2) unless site2.is_a?(Nokogiri::HTML::Document)
-
-      arr_site1 = site1.search('*').map(&:name)
-      arr_site2 = site2.search('*').map(&:name)
-      lcs = Diff::LCS.LCS(arr_site1, arr_site2)
-
-      return  (2.0 * lcs.length.to_f) / (arr_site1.length.to_f + arr_site2.length.to_f)
-    end
-
+  def serialize_nokogiri_html nokogiri_html
+    nokogiri_html.search('*').map(&:name)
   end
+
+  def serialize_url url
+    Nokogiri::HTML(open(url)).search('*').map(&:name)
+  end
+
+  def serialize_content str
+    Nokogiri::HTML(str).search('*').map(&:name)
+  end
+
+  def compare_nokogiri_html nok1, nok2
+    s1 = serialize_nokogiri_html(nok1)
+    s2 = serialize_nokogiri_html(nok2)
+    lcs(s1, s2)
+  end
+
+  def compare_urls url1, url2
+    s1 = serialize_url(url1)
+    s2 = serialize_url(url2)
+    lcs(s1, s2)
+  end
+
+  def compare_content str1, str2
+    s1 = serialize_content(str1)
+    s2 = serialize_content(str2)
+    lcs(s1, s2)
+  end
+
+  def lcs arr1, arr2
+    lcs = Diff::LCS.LCS(arr1, arr2)
+    return  (2.0 * lcs.length.to_f) / (arr1.length.to_f + arr2.length.to_f)
+  end
+
 end
