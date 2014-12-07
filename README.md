@@ -29,6 +29,8 @@ Or install it yourself as:
 
 ## Usage
 
+**From Ruby**
+
 ```ruby
 require 'comparateur'
 
@@ -42,7 +44,12 @@ duckduck_url = "https://duckduckgo.com"
 LeComparateur.compare_urls(google_url, duckduck_url) # 0.3815789473684211
 ```
 
-Example of usage [here](https://raw.githubusercontent.com/radubogdan/ruby-comparateur/master/examples/a.rb)
+Long Ruby example [here](https://raw.githubusercontent.com/radubogdan/ruby-comparateur/master/examples/a.rb)
+
+**From terminal**
+```
+$ comparateur http://google.com https://duckduckgo.com
+```
 
 ## Methods
 

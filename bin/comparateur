@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require 'comparateur'
+
+class LeComparateur
+  extend Comparateur
+
+  class << self
+    def url? url1, url2
+      reg = /^https?:\/\//
+      url1.match(reg) && url2.match(reg)
+    end
+
+    def help
+      puts "Please pass a valid URL\nExample: $ comparateur URL1 URL2"
+    end
+  end
+end
+
+url1 = ARGV.shift
+url2 = ARGV.shift
+
+begin
+  if LeComparateur.url?(url1, url2)
+    puts LeComparateur.compare_urls(url1, url2)
+  else
+    LeComparateur.help
+  end
+end
