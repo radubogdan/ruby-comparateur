@@ -29,7 +29,7 @@ describe Comparateur do
       expect(included_class.new.serialize_url("http://google.com").class).to eq Array
     end
   end
-  
+
   describe "serialize_content" do
     it "should return array" do
       expect(extended_class.serialize_content(@str1).class).to eq Array
@@ -49,8 +49,8 @@ describe Comparateur do
     end
 
     it "should return score" do
-      expect(extended_class.compare_nokogiri_html(@nok1, @nok2)).to eq 0.8  
-      expect(included_class.new.compare_nokogiri_html(@nok1, @nok2)).to eq 0.8  
+      expect(extended_class.compare_nokogiri_html(@nok1, @nok2)).to eq 0.8
+      expect(included_class.new.compare_nokogiri_html(@nok1, @nok2)).to eq 0.8
     end
   end
 
@@ -60,7 +60,7 @@ describe Comparateur do
       expect(included_class.new.compare_urls("http://google.com", "https://duckduckgo.com").class).to eq Float
     end
   end
-  
+
   describe "compare_content" do
     it "should return a Float number" do
       expect(extended_class.compare_content(@str1, @str2).class).to eq Float
