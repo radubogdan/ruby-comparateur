@@ -1,0 +1,14 @@
+language: ruby
+cache: bundler
+
+rvm:
+  - 2.0.0
+
+script: 'rspec'
+
+notifications:
+  email:
+    recipients:
+      - croitoruradubogdan@gmail.com
+    on_failure: change
+    on_success: never
