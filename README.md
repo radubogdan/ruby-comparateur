@@ -1,6 +1,6 @@
 # Comparateur
 
-[![Build Status](https://travis-ci.org/radubogdan/ruby-comparateur.svg?branch=master)](https://travis-ci.org/radubogdan/ruby-comparateur)[![Gem Version](https://badge.fury.io/rb/comparateur.svg)](http://badge.fury.io/rb/comparateur)
+[![Build Status](https://travis-ci.org/radubogdan/ruby-comparateur.svg?branch=master)](https://travis-ci.org/radubogdan/ruby-comparateur) [![Gem Version](https://badge.fury.io/rb/comparateur.svg)](http://badge.fury.io/rb/comparateur)
 
 Calculate the structural similarity between two HTML documents.
 

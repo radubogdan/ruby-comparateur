@@ -4,7 +4,7 @@ cache: bundler
 rvm:
   - 2.0.0
 
-script: 'rake'
+script: 'bundle exec rspec spec/'
 
 notifications:
   email:
