@@ -72,6 +72,15 @@ describe Comparateur do
       expect(included_class.new.compare_content(@str1, @str2)).to eq 0.8
     end
   end
+  
+  describe "compare_multiple_urls" do
+    my_arr = %w(http://google.com https://duckduckgo.com http://bing.com http://ask.com)
+    
+    it "should return Hash" do
+      expect(extended_class.compare_multiple_urls(my_arr).class).to eq Hash
+      expect(included_class.new.compare_multiple_urls(my_arr).class).to eq Hash
+    end
+  end
 
   describe "lcs" do
     arr1 = %w(html body h1 a)

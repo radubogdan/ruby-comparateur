@@ -34,6 +34,21 @@ module Comparateur
     s2 = serialize_content(str2)
     lcs(s1, s2)
   end
+  
+  def compare_multiple_urls arr
+    result = {}
+    
+    until arr.length == 1
+      first = arr.shift
+      
+      arr.each do |url|
+        score = compare_urls(first, url)
+        result[[first, url]] = score
+      end
+    end
+    
+    result
+  end
 
   def lcs arr1, arr2
     lcs = Diff::LCS.LCS(arr1, arr2)
